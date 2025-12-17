@@ -1,18 +1,19 @@
-#React2Shell Honeypot (CVE-2025-55182)A low-interaction, high-fidelity honeypot designed to detect and log exploitation attempts targeting **CVE-2025-55182 (React2Shell)**, a critical Remote Code Execution vulnerability in Next.js/React Server Components.
+# React2Shell Honeypot (CVE-2025-55182)A low-interaction, high-fidelity honeypot designed to detect and log exploitation attempts targeting **CVE-2025-55182 (React2Shell)**, a critical Remote Code Execution vulnerability in Next.js/React Server Components.
 
-##⚠️ Disclaimer**This software is for educational and research purposes only.**
+## ⚠️ Disclaimer**This software is for educational and research purposes only.**
 While this honeypot is designed to be secure by using emulation rather than actual execution, **never deploy this on your internal corporate network or home LAN.** Use a strictly isolated environment (e.g., a cloud VPS with no sensitive data or SSH keys).
 
 ---
 
-##🛡️ Security Architecture* **No Code Execution:** The script uses Regex to parse incoming payloads. It extracts commands (like `wget`) as strings but **never executes them**.
+## 🛡️ Security Architecture* **No Code Execution:** The script uses Regex to parse incoming payloads. It extracts commands (like `wget`) as strings but **never executes them**.
 * **Defanged Logs:** Malicious URLs captured are automatically "defanged" (e.g., `http` -> `hxxp`).
 * **Container Hardening:** Runs with a read-only filesystem and drops all root capabilities.
 * **JSON Logging:** Outputs structured JSON logs suitable for SIEM ingestion.
 
 ---
 
-##🛠️ Installation Guide###1. Update System & Install Docker```bash
+## 🛠️ Installation Guide
+### 1. Update System & Install Docker```bash
 sudo apt-get update
 sudo apt-get install -y docker.io python3-pip
 
@@ -24,7 +25,7 @@ cd ~/react2shell_honey
 
 ```
 
-###3. Create the Honeypot Script (`app.py`)```bash
+### 3. Create the Honeypot Script (`app.py`)```bash
 app.py from this repository
 
 ###4. Create `Dockerfile````bash
