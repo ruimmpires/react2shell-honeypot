@@ -1,9 +1,8 @@
 # React2Shell Honeypot (CVE-2025-55182)
 A low-interaction, high-fidelity honeypot designed to detect and log exploitation attempts targeting **CVE-2025-55182 (React2Shell)**, a critical Remote Code Execution vulnerability in Next.js/React Server Components.
 
-Note: 95% developed by Gemini Pro
-
 ## ⚠️ Disclaimer
+95% developed by Gemini Pro
 **This software is for educational and research purposes only.**
 While this honeypot is designed to be secure by using emulation rather than actual execution, **never deploy this on your internal corporate network or home LAN.** Use a strictly isolated environment (e.g., a cloud VPS with no sensitive data or SSH keys).
 
@@ -191,5 +190,5 @@ tail -f logs/honeypot.json
 
 ```
 
-##📊 Splunk
+## 📊 Splunk
 Create a new dashboard from source code as described in this repository.
